@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyChAJo2BhlkmsMPlC7Lp9Scxati2FzZ8CE',
-    appId: '1:316090106400:android:3d5cd9530d4c54251d3245',
-    messagingSenderId: '316090106400',
-    projectId: 'aelanji',
-    storageBucket: 'aelanji.firebasestorage.app',
+    apiKey: 'AIzaSyA6SmhpU-mq3fl_SQP5ChsxkjMFWzGU6iA',
+    appId: '1:873251006087:android:8e82ec7d83cf53c311ba22',
+    messagingSenderId: '873251006087',
+    projectId: 'egyptian-craftsmen',
+    storageBucket: 'egyptian-craftsmen.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB-DodW0zju3Dp1cbss-HAd44Wv4NF-PMA',
-    appId: '1:316090106400:ios:28ed2c83920c87851d3245',
-    messagingSenderId: '316090106400',
-    projectId: 'aelanji',
-    storageBucket: 'aelanji.firebasestorage.app',
-    iosBundleId: 'com.aelanji.aelanji',
+    apiKey: 'AIzaSyA7gIxhkCO5bKxhUtW4xirEm3BQgXhuBws',
+    appId: '1:873251006087:ios:ff2fb304d4f9999711ba22',
+    messagingSenderId: '873251006087',
+    projectId: 'egyptian-craftsmen',
+    storageBucket: 'egyptian-craftsmen.firebasestorage.app',
+    iosBundleId: 'com.example.egyptianCraftsmen',
   );
+
 }

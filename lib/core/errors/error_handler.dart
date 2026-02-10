@@ -1,15 +1,21 @@
-import 'package:aelanji/core/api/config/constants.dart';
-import 'package:aelanji/core/errors/failure.dart';
 import 'package:dio/dio.dart';
+import 'package:egyptian_craftsmen/core/errors/failure.dart';
 import 'package:flutter/material.dart';
 
+import '../api/config/constants.dart';
+
 class ErrorHandler {
-  static ErrorHandlerConfig? _config;
+  static ErrorHandlerConfig? errorHandlerConfig;
+
+  /// Configure error handler (call this in main.dart or DI setup)
+  static void configure(ErrorHandlerConfig config) {
+    errorHandlerConfig = config;
+  }
 
   /// Main error handling entry point
   static Failure handle(dynamic error, {StackTrace? stackTrace}) {
     // Log error if callback configured
-    _config?.onLogError?.call(error, stackTrace, {
+    errorHandlerConfig?.onLogError?.call(error, stackTrace, {
       'error_type': error.runtimeType.toString(),
       'message': error.toString(),
     });
@@ -27,7 +33,7 @@ class ErrorHandler {
 
   static Failure _handleDioError(DioException error) {
     // Log detailed Dio error
-    _config?.onLogError?.call(error, error.stackTrace, {
+    errorHandlerConfig?.onLogError?.call(error, error.stackTrace, {
       'dio_type': error.type.name,
       'path': error.requestOptions.path,
       'method': error.requestOptions.method,
@@ -66,39 +72,42 @@ class ErrorHandler {
       return const UnknownFailure(message: 'No response received from server.');
     }
 
-    final statusCode = response.statusCode ?? ResponseCode.DEFAULT;
+    final statusCode = response.statusCode ?? ResponseCode.defaultError; // ← CHANGED
     final errorMessage =
         _extractErrorMessage(response.data) ??
         'Server error (Status: $statusCode)';
 
-    // Handle 401 - Unauthorized
-    if (statusCode == ResponseCode.UNAUTHORIZED) {
-      _config?.onUnauthorized?.call();
+    // Handle 401 - Unauthorized using ResponseCode constant
+    if (statusCode == ResponseCode.unauthorized) { // ← CHANGED
+      errorHandlerConfig?.onUnauthorized?.call();
       return UnauthorizedFailure(message: errorMessage);
     }
 
     // Show error toast for non-401 errors (if configured)
-    if (_config?.onShowError != null &&
+    if (errorHandlerConfig?.onShowError != null &&
         errorMessage.isNotEmpty &&
         !_shouldSuppressError(response)) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        _config?.onShowError?.call(errorMessage);
+        errorHandlerConfig?.onShowError?.call(errorMessage);
       });
     }
 
-    // Map status codes to typed failures
+    // Map status codes to typed failures using ResponseCode constants
     return switch (statusCode) {
-      ResponseCode.BAD_REQUEST => ServerFailure(
+      ResponseCode.badRequest => ServerFailure( // ← CHANGED
         message: errorMessage,
         code: statusCode,
       ),
-      ResponseCode.FORBIDDEN => ForbiddenFailure(message: errorMessage),
-      ResponseCode.NOT_FOUND => NotFoundFailure(message: errorMessage),
-      ResponseCode.VALIDATION_ERROR => ValidationFailure(
+      ResponseCode.forbidden => ForbiddenFailure(message: errorMessage), // ← CHANGED
+      ResponseCode.notFound => NotFoundFailure(message: errorMessage), // ← CHANGED
+      ResponseCode.validationError => ValidationFailure( // ← CHANGED
         message: errorMessage,
         errors: response.data is Map<String, dynamic> ? response.data : null,
       ),
-      >= 500 && < 600 => ServerFailure(message: errorMessage, code: statusCode),
+      >= ResponseCode.internalServerError && < 600 => ServerFailure( // ← CHANGED
+        message: errorMessage,
+        code: statusCode,
+      ),
       _ => ServerFailure(message: errorMessage, code: statusCode),
     };
   }
@@ -167,7 +176,7 @@ class ErrorHandlerConfig {
   final void Function(String message)? onShowError;
   final Future<void> Function()? onUnauthorized;
   final void Function(dynamic error, StackTrace?, Map<String, dynamic>)?
-  onLogError;
+      onLogError;
   final Map<String, bool Function(Response)>? suppressionRules;
   final Map<int, String>? customStatusMessages;
 

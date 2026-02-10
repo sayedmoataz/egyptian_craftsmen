@@ -1,6 +1,7 @@
-import 'package:aelanji/core/services/caching/managers/app_prefs_manager.dart';
+
 
 import '../../../di/injection_container.dart';
+import '../../caching/managers/app_prefs_manager.dart';
 import '../crashlytics_logger.dart';
 import 'analytics_models.dart';
 

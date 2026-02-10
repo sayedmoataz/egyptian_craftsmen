@@ -1,12 +1,8 @@
-import 'package:aelanji/core/di/injection_container.dart';
-import 'package:aelanji/core/services/firebase/analytics/mock_analytics_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import '../../config/app_config.dart';
-import '../../services/firebase/analytics/analytics_helper.dart';
-import '../../services/firebase/analytics/analytics_services.dart';
-import '../../services/firebase/remote_config_service.dart';
-import '../../services/general/performance_service.dart';
+import '../../services/services.dart';
+import '../injection_container.dart';
 
 Future<void> initFirebase() async {
   PerformanceService.instance.startOperation('Firebase Services');

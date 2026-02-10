@@ -6,13 +6,23 @@ abstract class NetworkInfo {
   /// Checks if device is connected to internet
   Future<bool> get isConnected;
 
-  /// Stream of connectivity changes
+  /// Stream of connectivity changes (broadcast, shared across listeners)
   Stream<InternetConnectionStatus> get onStatusChange;
 }
 
-/// Implementation of NetworkInfo using internet_connection_checker
+/// Implementation of NetworkInfo using internet_connection_checker.
+///
+/// The [onStatusChange] stream is converted to a **broadcast stream**
+/// and cached so that all subscribers (ConnectivityWrapper, RequestQueue,
+/// NotificationStatusService) share the same underlying stream instead of
+/// each triggering independent connectivity checks.
 class NetworkInfoImpl implements NetworkInfo {
   final InternetConnectionChecker connectionChecker;
+
+  /// Cached broadcast stream – created lazily on first access.
+  late final Stream<InternetConnectionStatus> _statusStream = connectionChecker
+      .onStatusChange
+      .asBroadcastStream();
 
   NetworkInfoImpl(this.connectionChecker);
 
@@ -20,6 +30,5 @@ class NetworkInfoImpl implements NetworkInfo {
   Future<bool> get isConnected => connectionChecker.hasConnection;
 
   @override
-  Stream<InternetConnectionStatus> get onStatusChange =>
-      connectionChecker.onStatusChange;
+  Stream<InternetConnectionStatus> get onStatusChange => _statusStream;
 }

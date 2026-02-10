@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../../utils/constants.dart';
+
 /// Configuration class for network layer setup.
 /// 
 /// Provides validated, immutable configuration with sensible defaults.
@@ -19,15 +21,15 @@ class NetworkConfig {
 
   const NetworkConfig({
     required this.baseUrl,
-    this.connectTimeout = const Duration(seconds: 30),
-    this.receiveTimeout = const Duration(seconds: 30),
-    this.sendTimeout = const Duration(seconds: 30),
+    this.connectTimeout = AppConstants.connectionTimeout,
+    this.receiveTimeout = AppConstants.receiveTimeout,
+    this.sendTimeout = AppConstants.sendTimeout,
     Map<String, String>? defaultHeaders,
     this.interceptors = const [],
     this.enableLogging = false,
     this.enableRetry = true,
     this.maxRetries = 3,
-    this.retryDelay = const Duration(seconds: 1),
+    this.retryDelay = AppConstants.retryDelay,
     this.defaultResponseType = ResponseType.json,
     this.validateStatus,
   })  : defaultHeaders = defaultHeaders ?? const {},

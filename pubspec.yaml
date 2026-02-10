@@ -9,20 +9,53 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.8
-  easy_localization: ^3.0.8
-  dio: ^5.9.1
-  dartz: ^0.10.1
-  internet_connection_checker: ^3.0.1
-  pretty_dio_logger: ^1.4.0
+
+  # --- State Management & Dependency Injection ---
+  flutter_bloc: ^9.1.1
   get_it: ^9.2.0
+  dartz: ^0.10.1
+
+  # --- Networking & API ---
+  dio: ^5.9.1
+  pretty_dio_logger: ^1.4.0
+  internet_connection_checker: ^3.0.1
+
+  # --- Firebase Services ---
+  firebase_core: ^3.10.1
+  firebase_messaging: ^15.2.1
+  firebase_analytics: ^11.4.1
+  firebase_crashlytics: ^4.3.1
+  firebase_remote_config: ^5.2.1
+
+  # --- Local Storage & Device Info ---
+  flutter_secure_storage: ^10.0.0
+  path_provider: ^2.1.5
+  package_info_plus: ^9.0.0
+  device_info_plus: ^12.3.0
+
+  # --- UI & Localization & Responsiveness ---
+  easy_localization: ^3.0.8
+  advanced_responsive: ^1.0.3
+  flutter_local_notifications: ^20.0.0
+
+  # --- Media & Files ---
+  image_picker: ^1.2.1
+  image: ^4.7.2
+  saver_gallery: ^4.1.0
+  url_launcher: ^6.3.2
+
+  # --- Utils & Tools ---
+  permission_handler: ^12.0.1
+  performance_monitor: ^1.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/lang/

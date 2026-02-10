@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import '../api/config/constants.dart';
 
 /// Base Failure class - Represents all possible failures
 sealed class Failure extends Equatable {
@@ -20,7 +21,7 @@ final class ServerFailure extends Failure {
 final class NetworkFailure extends Failure {
   const NetworkFailure({
     super.message = 'No internet connection. Please check your network.',
-    super.code = -6,
+    super.code = ResponseCode.noInternetConnection, // ← CHANGED
   });
 }
 
@@ -31,8 +32,11 @@ final class TimeoutFailure extends Failure {
   const TimeoutFailure({
     required this.type,
     super.message = 'Request timeout. Please try again.',
-  }) : super(code: type == TimeoutType.connect ? -1 : 
-              type == TimeoutType.send ? -4 : -3);
+  }) : super(
+    code: type == TimeoutType.connect ? ResponseCode.connectTimeout // ← CHANGED
+        : type == TimeoutType.send ? ResponseCode.sendTimeout // ← CHANGED
+        : ResponseCode.receiveTimeout, // ← CHANGED
+  );
 
   @override
   List<Object?> get props => [message, code, type];
@@ -44,7 +48,7 @@ enum TimeoutType { connect, send, receive }
 final class UnauthorizedFailure extends Failure {
   const UnauthorizedFailure({
     super.message = 'Unauthorized. Please login again.',
-    super.code = 401,
+    super.code = ResponseCode.unauthorized, // ← CHANGED
   });
 }
 
@@ -52,7 +56,7 @@ final class UnauthorizedFailure extends Failure {
 final class ForbiddenFailure extends Failure {
   const ForbiddenFailure({
     super.message = 'Access forbidden.',
-    super.code = 403,
+    super.code = ResponseCode.forbidden, // ← CHANGED
   });
 }
 
@@ -60,7 +64,7 @@ final class ForbiddenFailure extends Failure {
 final class NotFoundFailure extends Failure {
   const NotFoundFailure({
     super.message = 'Resource not found.',
-    super.code = 404,
+    super.code = ResponseCode.notFound, // ← CHANGED
   });
 }
 
@@ -71,7 +75,7 @@ final class ValidationFailure extends Failure {
   const ValidationFailure({
     super.message = 'Validation failed.',
     this.errors,
-    super.code = 422,
+    super.code = ResponseCode.validationError, // ← CHANGED
   });
 
   @override
@@ -82,7 +86,7 @@ final class ValidationFailure extends Failure {
 final class CancelFailure extends Failure {
   const CancelFailure({
     super.message = 'Request was cancelled.',
-    super.code = -2,
+    super.code = ResponseCode.cancel, // ← CHANGED
   });
 }
 
@@ -90,7 +94,7 @@ final class CancelFailure extends Failure {
 final class CacheFailure extends Failure {
   const CacheFailure({
     super.message = 'Failed to load cached data.',
-    super.code = -5,
+    super.code = ResponseCode.cacheError, // ← CHANGED
   });
 }
 
@@ -105,6 +109,6 @@ final class ParseFailure extends Failure {
 final class UnknownFailure extends Failure {
   const UnknownFailure({
     super.message = 'An unexpected error occurred.',
-    super.code = -7,
+    super.code = ResponseCode.defaultError, // ← CHANGED
   });
 }

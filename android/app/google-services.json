@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "873251006087",
+    "project_id": "egyptian-craftsmen",
+    "storage_bucket": "egyptian-craftsmen.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873251006087:android:8e82ec7d83cf53c311ba22",
+        "android_client_info": {
+          "package_name": "com.example.egyptian_craftsmen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6SmhpU-mq3fl_SQP5ChsxkjMFWzGU6iA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

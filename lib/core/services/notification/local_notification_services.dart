@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:aelanji/core/di/injection_container.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../di/injection_container.dart';
 import '../caching/managers/app_prefs_manager.dart';
 import 'notification_models.dart';
 
@@ -51,7 +51,7 @@ class LocalNotificationService {
 
       // Android initialization settings
       const androidSettings = AndroidInitializationSettings(
-        '@mipmap/launcher_icon',
+        '@mipmap/ic_launcher',
       );
 
       // iOS initialization settings
@@ -63,7 +63,7 @@ class LocalNotificationService {
       );
 
       final bool? initialized = await _notificationsPlugin.initialize(
-        initSettings,
+        settings: initSettings,
         onDidReceiveNotificationResponse: onNotificationTap,
       );
 
@@ -236,10 +236,10 @@ class LocalNotificationService {
       );
 
       await _notificationsPlugin.show(
-        id,
-        title,
-        body,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        notificationDetails: notificationDetails,
         payload: payload,
       );
       return true;
@@ -268,10 +268,10 @@ class LocalNotificationService {
       );
 
       await _notificationsPlugin.show(
-        id,
-        title,
-        body,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        notificationDetails: notificationDetails,
         payload: payload,
       );
       return true;
@@ -343,10 +343,10 @@ class LocalNotificationService {
       );
 
       await _notificationsPlugin.show(
-        id,
-        title,
-        body,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        notificationDetails: notificationDetails,
         payload: payload,
       );
       return true;
@@ -385,11 +385,11 @@ class LocalNotificationService {
       );
 
       await _notificationsPlugin.zonedSchedule(
-        id,
-        title,
-        body,
-        tzScheduledTime,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: tzScheduledTime,
+        notificationDetails: notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         payload: payload,
       );
@@ -434,11 +434,11 @@ class LocalNotificationService {
       final notificationDetails = _buildNotificationDetails(priority: priority);
 
       await _notificationsPlugin.zonedSchedule(
-        id,
-        title,
-        body,
-        scheduledTime,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: scheduledTime,
+        notificationDetails: notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         matchDateTimeComponents: DateTimeComponents.time,
         payload: payload,
@@ -477,11 +477,11 @@ class LocalNotificationService {
       final notificationDetails = _buildNotificationDetails(priority: priority);
 
       await _notificationsPlugin.zonedSchedule(
-        id,
-        title,
-        body,
-        scheduledTime,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: scheduledTime,
+        notificationDetails: notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
         payload: payload,
@@ -508,7 +508,7 @@ class LocalNotificationService {
         channelDescription: 'Notifications with actions',
         importance: Importance.max,
         priority: Priority.high,
-        icon: '@mipmap/launcher_icon',
+        icon: '@mipmap/ic_launcher',
         actions: actions,
       );
 
@@ -524,10 +524,10 @@ class LocalNotificationService {
       );
 
       await _notificationsPlugin.show(
-        id,
-        title,
-        body,
-        notificationDetails,
+        id: id,
+        title: title,
+        body: body,
+        notificationDetails: notificationDetails,
         payload: payload,
       );
       return true;
@@ -540,7 +540,7 @@ class LocalNotificationService {
   /// Cancel a specific notification
   static Future<bool> cancelNotification(int id) async {
     try {
-      await _notificationsPlugin.cancel(id);
+      await _notificationsPlugin.cancel(id: id);
       return true;
     } catch (e) {
       _handleError('Failed to cancel notification: $e');
@@ -630,7 +630,7 @@ class LocalNotificationService {
       channelName,
       importance: importance,
       priority: androidPriority,
-      icon: '@mipmap/launcher_icon',
+      icon: '@mipmap/ic_launcher',
       largeIcon: largeIcon != null ? FilePathAndroidBitmap(largeIcon) : null,
       styleInformation: bigPicture != null
           ? BigPictureStyleInformation(
@@ -683,7 +683,7 @@ class LocalNotificationService {
       channelName,
       importance: importance,
       priority: androidPriority,
-      icon: '@mipmap/launcher_icon',
+      icon: '@mipmap/ic_launcher',
       enableVibration: priority.index >= NotificationPriority.high.index,
     );
 

@@ -11,6 +11,8 @@ class AppConstants {
 
   static const Duration connectionTimeout = Duration(seconds: 30);
   static const Duration receiveTimeout = Duration(seconds: 30);
+  static const Duration sendTimeout = Duration(seconds: 30);
+  static const Duration retryDelay = Duration(seconds: 1);
 
   // image caching
   static const Duration fadeInDuration = Duration(milliseconds: 200);

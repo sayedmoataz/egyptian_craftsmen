@@ -1,17 +1,17 @@
-import 'package:aelanji/core/di/services/api_injection.dart';
-import 'package:aelanji/core/di/services/firebase_injection.dart';
-import 'package:aelanji/core/di/services/notification.dart';
-import 'package:aelanji/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import '../../firebase_options.dart';
 import '../network/network_info.dart';
 import '../services/general/performance_service.dart';
 import 'blocs_injections.dart';
 import 'datasources_injections.dart';
 import 'repositories_injections.dart';
+import 'services/api_injection.dart';
 import 'services/cache_injection.dart';
+import 'services/firebase_injection.dart';
+import 'services/notification.dart';
 import 'usecases_injections.dart';
 
 final sl = GetIt.instance;
