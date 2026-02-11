@@ -1,0 +1,86 @@
+name: Deploy Flutter App
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: 
+
+jobs:
+  # ======================================================
+  # JOB 1: ANDROID BUILD & DEPLOY TO FIREBASE
+  # ======================================================
+  deploy_android:
+    name: Build & Deploy Android (Dev)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
+          echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
+
+      - name: Build APK (Dev Flavor)
+        run: flutter build apk --release --flavor dev -t lib/main_dev.dart
+
+      - name: Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-dev-release.apk
+
+  # ======================================================
+  # JOB 2: iOS BUILD & DEPLOY TO TESTFLIGHT
+  # ======================================================
+  # deploy_ios:
+  #   name: Build & Deploy iOS (Dev)
+  #   runs-on: macos-latest
+  #   needs: deploy_android
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v4
+
+  #     - name: Setup Flutter
+  #       uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: 'stable'
+
+  #     - name: Install Dependencies
+  #       run: flutter pub get
+
+  #     - name: Install Apple Certificate and Profile
+  #       env:
+  #         BUILD_CERTIFICATE_BASE64: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_BASE64 }}
+  #         P12_PASSWORD: ""
+  #         BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+  #         KEYCHAIN_PASSWORD: ""
+  #       run: |
+  #         # (Script details usually go here or use a marketplace action like 'apple-actions/import-codesign-certs')
+
+  #     - name: Build IPA (Dev Flavor)
+  #       run: flutter build ipa --release --flavor dev -t lib/main_dev.dart --export-options-plist=ios/Runner/ExportOptions.plist
+
+  #     - name: Upload to TestFlight
+  #       uses: apple-actions/upload-testflight-build@v1
+  #       with:
+  #         app-path: build/ios/ipa/Egyptian Craftsmen Dev.ipa
+  #         issuer-id: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+  #         api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+  #         api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
