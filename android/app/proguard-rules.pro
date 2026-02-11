@@ -14,7 +14,6 @@
 -dontwarn com.google.android.gms.**
 
 ## --- Dio & Network (JSON Deserialization) ---
-# لو بتستخدم Dio ومعه Type Conversion يدوي أو JSON Serializable
 -keepattributes Signature, Exceptions, *Annotation*
 -keep class com.codemonkeylabs.fpslibrary.** { *; }
 -dontwarn okio.**
@@ -41,3 +40,11 @@
 -dontwarn io.flutter.embedding.engine.renderer.FlutterRenderer
 -dontwarn android.net.http.SslError
 -dontwarn android.webkit.**
+
+## --- Play Core Library (Deferred Components) ---
+-keep class com.google.android.play.core.** { *; }
+-dontwarn com.google.android.play.core.**
+
+## --- Firebase Cloud Messaging ---
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends com.google.firebase.messaging.FirebaseMessagingService
