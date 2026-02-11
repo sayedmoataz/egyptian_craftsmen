@@ -5,9 +5,8 @@ class AppConstants {
   AppConstants._();
 
   // App Store Links
-  static const String appStoreUrl =
-      'https://apps.apple.com/app/aelanji/id0000000000'; // TODO: Update with actual App Store ID
-  static const String playStoreUrl = 'https://play.google.com/store/apps/details?id=com.aelanji.aelanji';
+  static const String appStoreUrl = 'https://apps.apple.com/app/aelanji/id0000000000';
+  static const String playStoreUrl = 'https://play.google.com/store/apps/details?id=com.heduja.egyptian_craftsmen';
 
   static const Duration connectionTimeout = Duration(seconds: 30);
   static const Duration receiveTimeout = Duration(seconds: 30);
