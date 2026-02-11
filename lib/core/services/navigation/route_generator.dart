@@ -19,7 +19,7 @@ class RouteGenerator {
       (r) => r.name == routeName,
       orElse: () => RouteConfig(
         name: routeName,
-        builder: (_, __) =>
+        builder: (_, _) =>
             unknownRoute?.call(routeName) ?? _buildUnknownRoute(routeName),
       ),
     );

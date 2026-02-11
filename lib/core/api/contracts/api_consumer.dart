@@ -7,6 +7,7 @@ import '../request_handler/response_wrapper.dart';
 /// Abstract contract for API consumer implementations.
 ///
 /// Provides both raw data access and wrapped response methods.
+// ignore: unintended_html_in_doc_comment
 /// All methods return Either<Failure, T> for functional error handling.
 abstract class ApiConsumer {
   // ============= RAW DATA METHODS =============

@@ -53,9 +53,38 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_flavorizr: ^2.2.3
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/lang/
+
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+      bundleId: "com.heduja.egyptian-craftsmen"
+  
+  flavors:
+    dev:
+      app:
+        name: "Egyptian Craftsmen Dev"
+      android:
+        applicationId: "com.heduja.egyptian_craftsmen.dev"
+      ios:
+        bundleId: "com.heduja.egyptian-craftsmen.dev"
+        buildSettings:
+          CFBundleDisplayName: "Egyptian Craftsmen Dev"
+    
+    prod:
+      app:
+        name: "Egyptian Craftsmen"
+      android:
+        applicationId: "com.heduja.egyptian_craftsmen"
+      ios:
+        bundleId: "com.heduja.egyptian-craftsmen"
+        buildSettings:
+          CFBundleDisplayName: "Egyptian Craftsmen"

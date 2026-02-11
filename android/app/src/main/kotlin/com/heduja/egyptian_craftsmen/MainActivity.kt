@@ -1,4 +1,4 @@
-package com.example.egyptian_craftsmen
+package com.heduja.egyptian_craftsmen
 
 import io.flutter.embedding.android.FlutterActivity
 

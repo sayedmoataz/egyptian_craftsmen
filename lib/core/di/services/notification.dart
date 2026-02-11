@@ -1,11 +1,7 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../network/network_info.dart';
-import '../../services/caching/managers/app_prefs_manager.dart';
-import '../../services/general/performance_service.dart';
 import '../../services/notification/foreground_notification_handler.dart';
-import '../../services/notification/local_notification_services.dart';
 import '../../services/services.dart';
 import '../injection_container.dart';
 

@@ -1,5 +1,3 @@
-
-
 import '../../../di/injection_container.dart';
 import '../../caching/managers/app_prefs_manager.dart';
 import '../crashlytics_logger.dart';
@@ -42,7 +40,7 @@ class AnalyticsHelper {
     return AnalyticsEvent(
       name: 'user_login',
       parameters: {
-        if (method != null) 'login_method': method,
+        'login_method': ?method,
         'timestamp': DateTime.now().millisecondsSinceEpoch,
       },
     );
@@ -69,8 +67,8 @@ class AnalyticsHelper {
         'signup_method': method,
         'user_id': userId,
         'user_email': userEmail,
-        if (userName != null) 'user_name': userName,
-        if (userPhone != null) 'user_phone': userPhone,
+        'user_name': ?userName,
+        'user_phone': ?userPhone,
         'timestamp': DateTime.now().millisecondsSinceEpoch,
       },
     );
@@ -90,7 +88,7 @@ class AnalyticsHelper {
         'transaction_id': transactionId,
         'value': value,
         'currency': currency,
-        if (items != null) 'items': items,
+        'items': ?items,
         'timestamp': DateTime.now().millisecondsSinceEpoch,
       },
     );
@@ -155,7 +153,7 @@ class AnalyticsHelper {
       name: 'search',
       parameters: {
         'search_term': searchTerm,
-        if (resultCount != null) 'result_count': resultCount,
+        'result_count': ?resultCount,
         'timestamp': DateTime.now().millisecondsSinceEpoch,
       },
     );
@@ -172,7 +170,7 @@ class AnalyticsHelper {
       parameters: {
         'content_type': contentType,
         'content_id': contentId,
-        if (method != null) 'method': method,
+        'method': ?method,
         'timestamp': DateTime.now().millisecondsSinceEpoch,
       },
     );

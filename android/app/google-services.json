@@ -7,9 +7,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:873251006087:android:8e82ec7d83cf53c311ba22",
+        "mobilesdk_app_id": "1:873251006087:android:865bad497a2759ad11ba22",
         "android_client_info": {
-          "package_name": "com.example.egyptian_craftsmen"
+          "package_name": "com.heduja.egyptian_craftsmen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6SmhpU-mq3fl_SQP5ChsxkjMFWzGU6iA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873251006087:android:7aeb3e9964572a0311ba22",
+        "android_client_info": {
+          "package_name": "com.heduja.egyptian_craftsmen.dev"
         }
       },
       "oauth_client": [],

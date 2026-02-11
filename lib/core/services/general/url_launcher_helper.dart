@@ -70,10 +70,7 @@ class UrlLauncherHelper {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: email,
-      queryParameters: {
-        if (subject != null) 'subject': subject,
-        if (body != null) 'body': body,
-      },
+      queryParameters: {'subject': ?subject, 'body': ?body},
     );
 
     if (await canLaunchUrl(emailUri)) {

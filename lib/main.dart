@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +9,7 @@ import 'core/localization/localization_manager.dart';
 import 'core/services/general/performance_service.dart';
 import 'core/theme/colors.dart';
 
-void main() async {
+FutureOr<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Start app startup timing
@@ -45,7 +46,7 @@ void main() async {
       path: LocalizationManager.translationsPath,
       fallbackLocale: LocalizationManager.fallbackLocale,
       startLocale: LocalizationManager.fallbackLocale,
-      child: const MyApp(),
+      child: const App(),
     ),
   );
 }
