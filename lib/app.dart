@@ -55,7 +55,7 @@ class _AppState extends State<App> {
 
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        initialRoute: Routes.login,
+        initialRoute: Routes.home,
 
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

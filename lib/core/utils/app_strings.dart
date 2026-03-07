@@ -67,7 +67,6 @@ class AppStrings {
   String get camera => tr('camera');
   String get gallery => tr('gallery');
 
-
   // Permission strings
   String get enableLocationAccess => tr('enable_location_access');
   String get enableCameraAccess => tr('enable_camera_access');
@@ -93,7 +92,6 @@ class AppStrings {
   String get uploadImage => tr('upload_image');
   String get imageType => tr('image_type');
 
-
   // utils
   String get youAreOffline => tr('you_are_offline');
   String get youAreOfflineDescription => tr('you_are_offline_description');
@@ -101,4 +99,23 @@ class AppStrings {
   String get forceUpdate => tr('force_update');
   String get forceUpdateDescription => tr('force_update_description');
   String get updateNow => tr('update_now');
+
+  // Home Screen
+  String get welcomeMessage => tr('welcome_message');
+  String get howCanWeHelp => tr('how_can_we_help');
+  String get searchPlaceholder => tr('search_placeholder');
+  String get homeTab => tr('home_tab');
+  String get appointmentsTab => tr('appointments_tab');
+  String get walletTab => tr('wallet_tab');
+  String get profileTab => tr('profile_tab');
+  String get offers => tr('offers');
+  String get specialOfferTitlePart1 => tr('special_offer_title_part1');
+  String get specialOfferTitlePart2 => tr('special_offer_title_part2');
+  String get bookNow => tr('book_now');
+  String get plumbing => tr('plumbing');
+  String get electricity => tr('electricity');
+  String get carpentry => tr('carpentry');
+  String get painting => tr('painting');
+  String get airConditioning => tr('air_conditioning');
+  String get viewAll => tr('view_all');
 }

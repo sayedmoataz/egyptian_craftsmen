@@ -9,7 +9,7 @@ class LocalizationManager {
   factory LocalizationManager() => _instance;
 
   static const String translationsPath = 'assets/lang';
-  static const Locale fallbackLocale = Locale('en');
+  static const Locale fallbackLocale = Locale('ar');
   static const List<Locale> supportedLocales = [Locale('en'), Locale('ar')];
 
   Locale _currentLocale = fallbackLocale;

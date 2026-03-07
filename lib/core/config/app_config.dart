@@ -1,23 +1,23 @@
+import '../../flavors.dart';
+
 /// Application Configuration
 class AppConfig {
   AppConfig._();
 
   // Environment
-  static const bool isProduction = true;
-  static const bool enableLogging = true;
-  static const String appVersion = '1.0.0';
-  static const String apiVersion = 'v1';
+  static bool isProduction = F.isProd;
+  static bool enableLogging = F.isDev;
 
   // API Configuration
   static String get baseUrl {
     return isProduction
-        ? 'https://aelanji.cloud/api/$apiVersion'
-        : 'https://aelanji.cloud/api/$apiVersion';
+        ? 'http://127.0.0.1:8000/api'
+        : 'http://127.0.0.1:8000/api';
   }
 
   static String get storageUrl {
     return isProduction
-        ? 'https://aelanji.cloud/storage'
-        : 'https://aelanji.cloud/storage';
+        ? 'http://127.0.0.1:8000/api'
+        : 'http://127.0.0.1:8000/api';
   }
 }

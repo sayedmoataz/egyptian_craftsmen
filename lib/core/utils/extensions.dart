@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../localization/localization_manager.dart';
@@ -282,4 +283,16 @@ extension NumExtension on num {
     }
     return '${(this / (1024 * 1024 * 1024)).toStringAsFixed(2)} GB';
   }
+}
+
+/// BuildContext Extensions
+extension BuildContextExtension on BuildContext {
+  /// Quick access to Theme
+  ThemeData get theme => Theme.of(this);
+
+  /// Quick access to TextTheme
+  TextTheme get textTheme => Theme.of(this).textTheme;
+
+  /// Quick access to ColorScheme
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
 }

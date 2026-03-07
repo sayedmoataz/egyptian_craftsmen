@@ -2,8 +2,8 @@ name: Deploy Flutter App
 
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch: 
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   # ======================================================
@@ -19,40 +19,47 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
-          java-version: '17'
+          distribution: "zulu"
+          java-version: "17"
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-      
+          channel: "stable"
+
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: 11076708
-          
+
       - name: Accept Android Licenses
         run: yes | sdkmanager --licenses
-          
+
       - name: Install Dependencies
         run: flutter pub get
 
       - name: Decode Keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
-          echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/key.jks
+          echo -e "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
 
       - name: Build APK (Dev Flavor)
         run: flutter build apk --release --flavor dev -t lib/main_dev.dart
 
+      - name: Create Firebase Service Credentials file
+        run: echo '${{ secrets.CREDENTIAL_FILE_CONTENT }}' > firebase-service-account.json
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
       - name: Upload to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          groups: testers
-          file: build/app/outputs/flutter-apk/app-dev-release.apk
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: firebase-service-account.json
+        run: |
+          firebase appdistribution:distribute build/app/outputs/flutter-apk/app-dev-release.apk \
+            --app "${{ secrets.FIREBASE_APP_ID_ANDROID }}" \
+            --release-notes "Automated build"
+            --groups "testers"
 
   # ======================================================
   # JOB 2: iOS BUILD & DEPLOY TO TESTFLIGHT
