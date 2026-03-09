@@ -1,3 +1,4 @@
+import 'package:advanced_responsive/advanced_responsive.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/extensions.dart';
@@ -19,7 +20,7 @@ class HomeTopBar extends StatelessWidget {
                 color: context.colorScheme.onSurfaceVariant,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: context.spacing(ResponsiveSpacing.xs)),
             Text(
               'كيف يمكننا مساعدتك اليوم؟',
               style: context.textTheme.titleMedium?.copyWith(

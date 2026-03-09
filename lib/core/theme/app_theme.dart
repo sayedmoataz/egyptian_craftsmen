@@ -20,7 +20,7 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.background,
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
-        secondary: AppColors.blueLight,
+        secondary: AppColors.primaryLight,
         error: AppColors.primary,
         onSecondary: AppColors.textPrimary,
         onBackground: AppColors.textPrimary,
@@ -93,7 +93,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.textOnPrimary,
+          foregroundColor: AppColors.surface,
           elevation: 2,
           padding: const EdgeInsets.symmetric(
             horizontal: AppConstants.spacingLG,
@@ -122,7 +122,7 @@ class AppTheme {
 
       // Divider Theme
       dividerTheme: const DividerThemeData(
-        color: AppColors.divider,
+        color: AppColors.neutral200,
         thickness: 1,
         space: 1,
       ),

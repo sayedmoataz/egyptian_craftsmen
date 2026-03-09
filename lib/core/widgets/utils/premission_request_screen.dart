@@ -89,7 +89,7 @@ class PermissionRequestScreen extends StatelessWidget {
                   Text(
                     _getTitle(context),
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.black,
+                      color: AppColors.neutral900,
                       fontWeight: FontWeight.bold,
                       fontSize: info.responsiveFontSize(18),
                     ),

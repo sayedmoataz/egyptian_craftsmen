@@ -46,7 +46,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final buttonColor = _isDisabled
-        ? (color ?? AppColors.primaryHover)
+        ? (color ?? AppColors.primaryLight)
         : (color ?? AppColors.primary);
 
     return SizedBox(

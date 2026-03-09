@@ -1,24 +1,26 @@
 import 'package:advanced_responsive/advanced_responsive.dart';
+import 'package:egyptian_craftsmen/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/extensions.dart';
 
 class HomeAdBanner extends StatelessWidget {
-  const HomeAdBanner({super.key});
+  final ResponsiveInfo info;
+  const HomeAdBanner({required this.info, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 156,
+      height: info.responsiveValue(mobile: 156, tablet: 200, desktop: 240),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: context.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
+        color: AppColors.neutral100,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLG),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
+            color: AppColors.neutral900.withValues(alpha: 0.15),
             offset: const Offset(0, 4),
             blurRadius: 12,
           ),
@@ -29,8 +31,12 @@ class HomeAdBanner extends StatelessWidget {
           // Background Image Placeholder
           Positioned.fill(
             child: Container(
-              color: Colors.grey.shade800,
-              child: const Icon(Icons.image, size: 64, color: Colors.white24),
+              color: AppColors.neutral800,
+              child: Icon(
+                Icons.image,
+                size: info.responsiveValue(mobile: 64, tablet: 80, desktop: 96),
+                color: AppColors.surface.withValues(alpha: 0.24),
+              ),
             ),
           ),
 
@@ -40,8 +46,8 @@ class HomeAdBanner extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color(0xFF1E1E1E),
-                    const Color(0xFF1E1E1E).withValues(alpha: 0.0),
+                    AppColors.neutral900,
+                    AppColors.neutral900.withValues(alpha: 0.0),
                   ],
                 ),
               ),
@@ -50,13 +56,12 @@ class HomeAdBanner extends StatelessWidget {
 
           // Content
           Positioned(
-            left:
-                24, // RTL flips this conceptually, but positioning from left works if app directionality handles it
+            left: info.spacing(ResponsiveSpacing.lg),
             top: 0,
             bottom: 0,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                vertical: context.spacing(ResponsiveSpacing.md),
+                vertical: info.spacing(ResponsiveSpacing.md),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -64,44 +69,43 @@ class HomeAdBanner extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.of(context).offers,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontFamily: 'Almarai',
+                    style: TextStyle(
+                      fontSize: info.responsiveFontSize(14),
+                      color: AppColors.surface,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: info.spacing(ResponsiveSpacing.sm)),
                   Text(
                     AppStrings.of(context).specialOfferTitlePart1,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFFF2F2F2),
-                      fontFamily: 'Almarai',
+                    style: TextStyle(
+                      fontSize: info.responsiveFontSize(18),
+                      color: AppColors.neutral50,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     AppStrings.of(context).specialOfferTitlePart2,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFFF2F2F2),
-                      fontFamily: 'Almarai',
+                    style: TextStyle(
+                      fontSize: info.responsiveFontSize(18),
+                      color: AppColors.neutral50,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: info.responsiveValue(mobile: 12, tablet: 16),
+                  ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 6,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: info.spacing(ResponsiveSpacing.lg),
+                      vertical: info.responsiveValue(mobile: 6, tablet: 8),
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1C3557),
+                      color: AppColors.primaryDark,
                       borderRadius: BorderRadius.circular(100),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.25),
+                          color: AppColors.neutral900.withValues(alpha: 0.25),
                           offset: const Offset(4, 4),
                           blurRadius: 12,
                           blurStyle: BlurStyle.inner,
@@ -110,10 +114,9 @@ class HomeAdBanner extends StatelessWidget {
                     ),
                     child: Text(
                       AppStrings.of(context).bookNow,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Color(0xFFF2F2F2),
-                        fontFamily: 'Almarai',
+                      style: TextStyle(
+                        fontSize: info.responsiveFontSize(10),
+                        color: AppColors.neutral50,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -117,7 +117,7 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
         if (!_isConnected)
           Positioned.fill(
             child: Material(
-              color: AppColors.white,
+              color: AppColors.surface,
               child: OfflineScreen(
                 isLoading: _isCheckingConnection,
                 onRetry: _retryConnection,

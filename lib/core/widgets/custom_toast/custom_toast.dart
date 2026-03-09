@@ -286,11 +286,11 @@ class _ToastContent extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withValues(alpha: 0.1),
+            color: AppColors.neutral900.withValues(alpha: 0.1),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -326,7 +326,7 @@ class _ToastContent extends StatelessWidget {
             color: AppColors.success,
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.check, color: AppColors.white, size: 18),
+          child: const Icon(Icons.check, color: AppColors.surface, size: 18),
         );
 
       case ToastType.error:
@@ -337,7 +337,7 @@ class _ToastContent extends StatelessWidget {
             color: AppColors.error,
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.close, color: AppColors.white, size: 18),
+          child: const Icon(Icons.close, color: AppColors.surface, size: 18),
         );
 
       case ToastType.loading:
@@ -346,7 +346,7 @@ class _ToastContent extends StatelessWidget {
           height: 24,
           child: CircularProgressIndicator(
             strokeWidth: 2.5,
-            color: AppColors.greyMedium,
+            color: AppColors.neutral500,
           ),
         );
 

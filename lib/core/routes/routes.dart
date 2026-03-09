@@ -5,7 +5,7 @@ import '../../features/login/presentation/pages/login_screen.dart';
 
 final routes = [
   RouteConfig(name: Routes.login, builder: (_, _) => const LoginScreen()),
-  RouteConfig(name: Routes.home, builder: (_, _) => const HomePage()),
+  RouteConfig(name: Routes.home, builder: (_, _) => const HomeScreen()),
 ];
 
 /// Application Routes

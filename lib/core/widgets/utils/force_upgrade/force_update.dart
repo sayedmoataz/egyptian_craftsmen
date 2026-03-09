@@ -17,7 +17,7 @@ class ForceUpdate extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, info) {
         return Scaffold(
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.surface,
           body: Padding(
             padding: info.safePadding,
             child: Center(
@@ -54,7 +54,7 @@ class ForceUpdate extends StatelessWidget {
                     text: AppStrings.of(context).updateNow,
                     isLoading: isLoading,
                     color: AppColors.primary,
-                    textColor: AppColors.white,
+                    textColor: AppColors.surface,
                   ),
                 ],
               ),
