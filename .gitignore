@@ -49,3 +49,5 @@ android/app/*.jks
 android/app/*.keystore
 
 my.secrets
+.env
+.agents/

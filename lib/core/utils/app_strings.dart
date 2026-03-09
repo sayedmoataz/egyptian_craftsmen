@@ -118,4 +118,14 @@ class AppStrings {
   String get painting => tr('painting');
   String get airConditioning => tr('air_conditioning');
   String get viewAll => tr('view_all');
+
+  // Category Details
+  String get autoDetectLocation => tr('auto_detect_location');
+  String get maadiCairo => tr('maadi_cairo');
+  String get filter => tr('filter');
+  String get highestRated => tr('highest_rated');
+  String get verified => tr('verified');
+  String get available => tr('available');
+  String yearsOfExperience(int years) =>
+      trWithParams('years_of_experience', [years.toString()]);
 }
