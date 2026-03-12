@@ -12,7 +12,6 @@ import 'core/services/navigation/navigation_service.dart';
 import 'core/services/navigation/route_generator.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/utils/force_upgrade/force_update_wrapper.dart';
-import 'core/widgets/utils/offline/connectivity_wrapper.dart';
 import 'flavors.dart';
 
 class App extends StatefulWidget {
@@ -65,7 +64,7 @@ class _AppState extends State<App> {
 
           widget = ForceUpdateWrapper(child: widget);
 
-          widget = ConnectivityWrapper(child: widget);
+          // widget = ConnectivityWrapper(child: widget); // TODO
 
           if (F.appFlavor == Flavor.dev) {
             widget = _flavorBanner(

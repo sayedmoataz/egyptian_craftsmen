@@ -38,7 +38,16 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
   void initState() {
     super.initState();
     _networkInfo = sl<NetworkInfo>();
+    _performInitialCheck();
     _listenToConnectivity();
+  }
+
+  Future<void> _performInitialCheck() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (!mounted) return;
+
+    final isConnected = await _networkInfo.isConnected;
+    _applyStatus(isConnected);
   }
 
   void _listenToConnectivity() {
@@ -55,7 +64,7 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
         // Stream says disconnected → perform double-verification.
         // Wait 2 seconds, check again. If still offline, wait another 2 seconds
         // and check a third time. Only show offline screen if all checks fail.
-        _verifyTimer = Timer(const Duration(seconds: 2), () async {
+        _verifyTimer = Timer(const Duration(seconds: 3), () async {
           // First verification check
           final firstCheck = await _networkInfo.isConnected;
           if (firstCheck) {

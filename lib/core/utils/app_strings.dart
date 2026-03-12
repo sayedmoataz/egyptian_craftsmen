@@ -128,4 +128,10 @@ class AppStrings {
   String get available => tr('available');
   String yearsOfExperience(int years) =>
       trWithParams('years_of_experience', [years.toString()]);
+
+  String get bookService => tr('book_service');
+
+  String get electrician => tr('electrician');
+  String get plumber => tr('plumber');
+  String get searchPlaceholderElectrician => tr('search_placeholder_electrician');
 }

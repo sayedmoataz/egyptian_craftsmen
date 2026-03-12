@@ -21,7 +21,7 @@ class CategoryDetailsTopBar extends StatelessWidget {
                 Icon(
                   Icons.location_on_outlined,
                   color: context.colorScheme.onSurfaceVariant,
-                  size: 24,
+                  size: info.responsiveFontSize(24),
                 ),
                 SizedBox(width: info.spacing(ResponsiveSpacing.sm)),
                 Column(
@@ -44,11 +44,11 @@ class CategoryDetailsTopBar extends StatelessWidget {
                             color: AppColors.neutral900,
                           ),
                         ),
-                        const SizedBox(width: 4),
-                        const Icon(
+                        SizedBox(width: info.spacing(ResponsiveSpacing.xs)),
+                        Icon(
                           Icons.keyboard_arrow_down,
                           color: AppColors.neutral900,
-                          size: 16,
+                          size: info.responsiveFontSize(16),
                         ),
                       ],
                     ),
@@ -63,14 +63,17 @@ class CategoryDetailsTopBar extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined, size: 28),
+                  icon: Icon(
+                    Icons.notifications_outlined,
+                    size: info.responsiveFontSize(28),
+                  ),
                   color: AppColors.primaryDark,
                 ),
-                Positioned(
-                  right: 8,
-                  top: 8,
+                PositionedDirectional(
+                  end: info.spacing(ResponsiveSpacing.xs),
+                  top: info.spacing(ResponsiveSpacing.xs),
                   child: Container(
-                    padding: const EdgeInsets.all(4),
+                    padding: EdgeInsets.all(info.spacing(ResponsiveSpacing.xs)),
                     decoration: const BoxDecoration(
                       color: AppColors.primaryDark,
                       shape: BoxShape.circle,
@@ -78,7 +81,7 @@ class CategoryDetailsTopBar extends StatelessWidget {
                     child: Text(
                       '1',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.surface,
                         fontSize: info.responsiveFontSize(10),
                         fontWeight: FontWeight.bold,
                       ),
