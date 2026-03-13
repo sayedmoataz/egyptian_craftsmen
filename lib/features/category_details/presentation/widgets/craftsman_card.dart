@@ -1,6 +1,7 @@
 import 'package:advanced_responsive/advanced_responsive.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/routes/routes.dart';
 import '../../../../../core/theme/colors.dart';
 import '../../../../core/utils/constants.dart';
 import 'bottom_section_actions.dart';
@@ -33,20 +34,24 @@ class CraftsmanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: info.spacing(ResponsiveSpacing.md)),
-      padding: EdgeInsets.all(info.spacing(ResponsiveSpacing.sm)),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMD),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            offset: const Offset(0, 4),
-            blurRadius: 12,
-          ),
-        ],
-      ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, Routes.craftsmanProfile);
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: info.spacing(ResponsiveSpacing.md)),
+        padding: EdgeInsets.all(info.spacing(ResponsiveSpacing.sm)),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(AppConstants.radiusMD),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              offset: const Offset(0, 4),
+              blurRadius: 12,
+            ),
+          ],
+        ),
       child: Column(
         children: [
           // Top Section: Info + Image
@@ -66,6 +71,7 @@ class CraftsmanCard extends StatelessWidget {
           const BottomSectionActions(),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

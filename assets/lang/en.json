@@ -84,5 +84,11 @@
     "verified": "Verified",
     "available": "Available",
     "years_of_experience": "{0} Years Experience",
-    "book_service": "Book Service"
+    "book_service": "Book Service",
+    "about_me": "About Me",
+    "portfolio": "Portfolio",
+    "customer_reviews": "Customer Reviews",
+    "read_all": "Read All",
+    "successful_service": "Successful Service",
+    "response_speed": "Min | Response Time"
 }

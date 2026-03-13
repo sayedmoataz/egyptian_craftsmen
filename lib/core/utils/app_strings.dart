@@ -134,4 +134,12 @@ class AppStrings {
   String get electrician => tr('electrician');
   String get plumber => tr('plumber');
   String get searchPlaceholderElectrician => tr('search_placeholder_electrician');
+
+  // Craftsman Profile
+  String get aboutMe => tr('about_me');
+  String get portfolio => tr('portfolio');
+  String get customerReviews => tr('customer_reviews');
+  String get readAll => tr('read_all');
+  String get successfulService => tr('successful_service');
+  String get responseSpeed => tr('response_speed');
 }

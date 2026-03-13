@@ -1,6 +1,7 @@
 import 'package:egyptian_craftsmen/core/routes/route_config.dart';
 
 import '../../features/category_details/presentation/pages/category_details_screen.dart';
+import '../../features/craftsman_profile/presentation/pages/craftsman_profile_page.dart';
 import '../../features/home_screen/data/models/category_model.dart';
 import '../../features/home_screen/presentation/pages/home_page.dart';
 import '../../features/login/presentation/pages/login_screen.dart';
@@ -13,6 +14,11 @@ final routes = [
     builder: (context, args) =>
         CategoryDetailsScreen(categoryModel: args as CategoryModel),
   ),
+  RouteConfig(
+    name: Routes.craftsmanProfile,
+    builder: (_, _) => const CraftsmanProfilePage(),
+  ),
+  
 ];
 
 /// Application Routes
@@ -22,6 +28,7 @@ class Routes {
   static const String login = '/login';
   static const String home = '/home';
   static const String categoryDetails = '/category_details';
+  static const String craftsmanProfile = '/craftsman_profile';
 }
 
 class RouteArguments {

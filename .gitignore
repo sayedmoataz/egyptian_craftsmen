@@ -51,3 +51,7 @@ android/app/*.keystore
 my.secrets
 .env
 .agents/
+.agent/
+.specify
+.claude
+specs/
