@@ -1,9 +1,8 @@
 import 'package:advanced_responsive/advanced_responsive.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/extensions.dart';
+import 'title_widget.dart';
 
 class CraftsmanReviewsSection extends StatelessWidget {
   final VoidCallback onReadAll;
@@ -20,33 +19,11 @@ class CraftsmanReviewsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.chat_bubble_outline, color: AppColors.primary, size: 20),
-                SizedBox(width: context.spacing(ResponsiveSpacing.xs)),
-                Text(
-                  AppStrings.of(context).customerReviews,
-                  style: context.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: context.responsiveFontSize(14),
-                  ),
-                ),
-              ],
-            ),
-            InkWell(
-              onTap: onReadAll,
-              child: Text(
-                AppStrings.of(context).readAll,
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: AppColors.primary,
-                  fontSize: context.responsiveFontSize(12),
-                ),
-              ),
-            ),
-          ],
+        TitleWidget(
+          icon: Icons.chat_bubble_outline,
+          title: AppStrings.of(context).customerReviews,
+          buttonText: AppStrings.of(context).readAll,
+          onTap: onReadAll,
         ),
         SizedBox(height: context.spacing(ResponsiveSpacing.sm)),
         ListView.separated(
@@ -54,7 +31,8 @@ class CraftsmanReviewsSection extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: reviewCards.length,
           padding: EdgeInsets.zero,
-          separatorBuilder: (context, index) => SizedBox(height: context.spacing(ResponsiveSpacing.sm)),
+          separatorBuilder: (context, index) =>
+              SizedBox(height: context.spacing(ResponsiveSpacing.sm)),
           itemBuilder: (context, index) => reviewCards[index],
         ),
       ],

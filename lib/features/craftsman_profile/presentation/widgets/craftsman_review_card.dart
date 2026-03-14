@@ -1,5 +1,6 @@
 import 'package:advanced_responsive/advanced_responsive.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:egyptian_craftsmen/core/utils/constants.dart';
+import 'package:egyptian_craftsmen/core/widgets/custom_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/colors.dart';
@@ -26,8 +27,8 @@ class CraftsmanReviewCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(context.spacing(ResponsiveSpacing.sm)),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLG),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,22 +40,20 @@ class CraftsmanReviewCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 34,
-                    height: 34,
+                    width: context.spacing(ResponsiveSpacing.xl),
+                    height: context.spacing(ResponsiveSpacing.xl),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.neutral200,
                     ),
                     child: avatarUrl != null
                         ? ClipRRect(
-                            borderRadius: BorderRadius.circular(17),
-                            child: CachedNetworkImage(
-                              imageUrl: avatarUrl!,
-                              fit: BoxFit.cover,
-                              errorWidget: (context, url, error) => const Icon(Icons.person, color: Colors.white),
+                            borderRadius: BorderRadius.circular(
+                              AppConstants.radiusLG,
                             ),
+                            child: CachedImageWidget(imageUrl: avatarUrl!),
                           )
-                        : const Icon(Icons.person, color: Colors.white),
+                        : const Icon(Icons.person, color: AppColors.surface),
                   ),
                   SizedBox(width: context.spacing(ResponsiveSpacing.xs)),
                   Column(
@@ -85,8 +84,8 @@ class CraftsmanReviewCard extends StatelessWidget {
                   5,
                   (index) => Icon(
                     index < rating.round() ? Icons.star : Icons.star_border,
-                    color: Colors.orange,
-                    size: 14,
+                    color: AppColors.accent,
+                    size: context.responsiveFontSize(12),
                   ),
                 ),
               ),
